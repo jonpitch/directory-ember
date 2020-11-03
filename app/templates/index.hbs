@@ -1,0 +1,6 @@
+<h1>companies</h1>
+<ul>
+  {{#each this.model as |c|}}
+    <li><LinkTo @route="company.profile" @model={{c}}>{{c.name}}</LinkTo></li>
+  {{/each}}
+</ul>

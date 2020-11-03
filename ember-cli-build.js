@@ -1,10 +1,21 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const fs = require('fs');
+
+const companies = JSON.parse(fs.readFileSync('./public/companies.json'));
+const premberUrls = ['/'];
+companies.forEach((c) => {
+  //workaround some janky slugs just to get build going
+  const slug = c.slug.replace('.', '-').replace('/', '-');
+  premberUrls.push(`/company/${slug}`);
+});
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    prember: {
+      urls: premberUrls
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -7,4 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function() {
+  this.route('company', function() {
+    this.route('profile', { path: '/:slug' });
+  });
 });
